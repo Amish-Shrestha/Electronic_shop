@@ -1,0 +1,19 @@
+.body{
+  display: flex;
+   .body-main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    box-shadow: 0 10px 50px #e5e5e5;
+    & .products {
+      margin: 20px;
+      width: 150px;
+      & .product-image{
+        & img {
+          width: 150px;
+        }
+      }
+    }
+  }
+  
+}

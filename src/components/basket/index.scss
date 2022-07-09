@@ -1,0 +1,10 @@
+.body-basket {
+  & .basket-main {
+    text-align: center;
+    & .basket-image {
+      & img {
+        width: 30%;
+      }
+    }
+  }
+}

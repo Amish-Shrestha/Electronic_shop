@@ -1,0 +1,10 @@
+.header-main{
+    padding: 20px;
+    background:  #eb900f;
+    & .header-elements{
+        & .header-name{
+           text-align: center;
+           color: #ffff;
+        }
+    }
+}
