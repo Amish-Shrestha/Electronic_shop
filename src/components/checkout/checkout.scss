@@ -1,0 +1,17 @@
+.form-body{
+    padding: 40px;
+    & .form-header{
+        text-align: center;
+        margin-bottom: 40px;
+    }
+}
+.label {
+  text-align: right;
+}
+.button-submit{
+    text-align: center;
+}
+
+.common{
+    margin-bottom: 20px;
+}

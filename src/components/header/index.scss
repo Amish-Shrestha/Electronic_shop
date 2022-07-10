@@ -5,6 +5,10 @@
         & .header-name{
            text-align: center;
            color: #ffff;
+           & a{
+                color: #ffff;
+                text-decoration: none;
+           }
         }
     }
 }

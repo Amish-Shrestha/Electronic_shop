@@ -1,19 +1,24 @@
 .body{
   display: flex;
    .body-main {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
     box-shadow: 0 10px 50px #e5e5e5;
     & .products {
-      margin: 20px;
-      width: 150px;
+      text-align: center;
+      margin: 10px auto;
+      width: 240px;
       & .product-image{
+        margin-bottom: 20px;
         & img {
-          width: 150px;
+          width: 100px;
         }
       }
+      & .details{
+        box-shadow: 0 10px 50px #eee;
+        margin-bottom: 20px;
+      }
     }
-  }
-  
+  }  
+}
+.heading{
+  font-weight: 600;
 }

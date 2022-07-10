@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromBasket } from "../../redux/action/action";
 import { useNavigate } from "react-router-dom";
+import { Container, Row, Col } from "react-bootstrap";
 import "./index.scss";
 
 const Basket = ({ usTors }) => {
@@ -33,20 +34,35 @@ const Basket = ({ usTors }) => {
     empty();
   });
 
-
   return (
     <div className="body-basket">
-      <div className="container">
-        {basket.map((item) => {
-          return (
-            <div className="basket-main">
-              <div className="basket-image">
-                <img src={item.image} alt="img" />
-              </div>
-              <div>
-                <div>{item.name}</div>
-                <div>Rs {usTors(item.price)}</div>
-                <div>
+      {basket.map((item) => {
+        return (
+          <div className="basket-main">
+            <Row className="align-items-center">
+              <Col md={4}>
+                <div className="basket-image">
+                  <img src={item.image} alt="img" />
+                </div>
+              </Col>
+              <Col md={4}>
+                <div className="discription">
+                  <div className="item-name">
+                    <h5>{item.name}</h5>
+                    <div className="item-price">
+                      <span className="heading">Rs</span>
+                      {usTors(item.price)}
+                    </div>
+
+                    <div className="item-price">
+                      <span className="heading">Category:</span>
+                      {item.category.join(" , ")}
+                    </div>
+                  </div>
+                </div>
+              </Col>
+              <Col md={4}>
+                <div className="button">
                   <button
                     className="btn btn-primary"
                     onClick={() => {
@@ -56,22 +72,34 @@ const Basket = ({ usTors }) => {
                     Remove from basket
                   </button>
                 </div>
-              </div>
-            </div>
-          );
-        })}
-        <div>
-          <div>Total: Rs {getBasketTotal(basket)}</div>
-          <div>
-            <button
-              className="btn btn-primary"
-              disabled={empts}
-              onClick={navigates}
-            >
-              Checkout
-            </button>
+              </Col>
+            </Row>
           </div>
-        </div>
+        );
+      })}
+      <hr />
+      <div className="checkout-del">
+        <Row className="align-items-center">
+          <Col md={6}>
+            <div>
+              {" "}
+              <h6>
+                Total: Rs <span>{getBasketTotal(basket)}</span>
+              </h6>
+            </div>
+          </Col>
+          <Col md={6}>
+            <div className="checkout-button">
+              <button
+                className="btn btn-primary"
+                disabled={empts}
+                onClick={navigates}
+              >
+                Checkout
+              </button>
+            </div>
+          </Col>
+        </Row>
       </div>
     </div>
   );

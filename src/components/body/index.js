@@ -6,6 +6,7 @@ import moment from "moment";
 import { setBasket, setProducts } from "../../redux/action/action";
 import Productfliter from "../products/productfliter/productfliter";
 import Basket from "../basket";
+import { Container, Row, Col } from "react-bootstrap";
 
 const Body1 = () => {
   const products = useSelector((state) => state.allProducts.products);
@@ -51,62 +52,77 @@ const Body1 = () => {
   });
   return (
     <div className="body">
-      <div className="container">
+      <Container>
         {loading ? (
           <div>Loading....</div>
         ) : (
           <Productfliter filterProduct={filterProduct} props={categoryList} />
         )}
         <div className="body-main">
-          {products.map((product) => {
-            let stockCount = 0;
-            basket.forEach((item) => {
-              if (item.id === product.id) {
-                stockCount++;
-              }
-            })
-            return (
-              <div className="products" key={product.id}>
-                <div className="product-image">
-                  <img
-                    src="https://electronic-ecommerce.herokuapp.com/fantechHeadset.jpg"
-                    alt="img"
-                  />
-                </div>
-                <div>
-                  <h6>{product.name}</h6>
-                  <div>Price: Rs{usTors(product.price)}</div>
-                  <div>Stock : {parseInt(product.stock)-stockCount}</div>
-                  <div>categories: {product.category.join(", ")}</div>
-                  <div>
-                    Date: {moment(product.createDate).format("DD-MM-YYYY")}
+          <Row>
+            {products.map((product) => {
+              let stockCount = 0;
+              basket.forEach((item) => {
+                if (item.id === product.id) {
+                  stockCount++;
+                }
+              });
+              return (
+                <Col sm="3">
+                  <div className="products" key={product.id}>
+                    <div className="product-image">
+                      <img
+                        src="https://electronic-ecommerce.herokuapp.com/fantechHeadset.jpg"
+                        alt="img"
+                      />
+                    </div>
+                    <div className="details">
+                      <h6>{product.name}</h6>
+                      <div>
+                        <span className="heading">Price:</span>
+                        Rs{usTors(product.price)}
+                      </div>
+                      <div>
+                      <span className="heading">Stock :</span>
+                        {parseInt(product.stock) - stockCount}
+                      </div>
+                      <div>
+                        <span className="heading">Categories:</span>
+                        {product.category.join(", ")}
+                      </div>
+                      <div>
+                        <span className="heading">Date:</span>
+                        {moment(product.createDate).format("DD-MM-YYYY")}
+                      </div>
+                    </div>
+                    <div>
+                      <button
+                        className="btn btn-primary"
+                        disabled={parseInt(product.stock) === stockCount}
+                        onClick={() => {
+                          dispatch(
+                            setBasket({
+                              id: product.id,
+                              name: product.name,
+                              price: product.price,
+                              stock: product.stock,
+                              category: product.category,
+                              image:
+                                "https://electronic-ecommerce.herokuapp.com/fantechHeadset.jpg",
+                            })
+                          );
+                        }}
+                      >
+                        Add to Cart
+                      </button>
+                    </div>
                   </div>
-                </div>
-                <div>
-                  <button
-                    className="btn btn-primary"
-                    disabled={parseInt(product.stock) === stockCount}
-                    onClick={() => {
-                      dispatch(
-                        setBasket({
-                          id: product.id,
-                          name: product.name,
-                          price: product.price,
-                          stock: product.stock,
-                          image:
-                            "https://electronic-ecommerce.herokuapp.com/fantechHeadset.jpg",
-                        })
-                      );
-                    }}
-                  >
-                    Add to Cart
-                  </button>
-                </div>
-              </div>
-            );
-          })}
+                </Col>
+              );
+            })}
+          </Row>
         </div>
-      </div>
+      </Container>
       <div className="basket">
         <Basket usTors={usTors} />
       </div>
