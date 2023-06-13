@@ -28,6 +28,7 @@ const Body1 = () => {
     });
     dispatch(setProducts(filteredProducts));
   };
+
   //api fetching to the redux
   const fetchProducts = async () => {
     const response = await axios

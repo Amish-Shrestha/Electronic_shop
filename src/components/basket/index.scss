@@ -1,4 +1,12 @@
 .body-basket {
+  & .item-number{
+    text-align: right;
+    padding: 20px;
+  }
+  & .basket-items{
+    height: 600px;
+    overflow-x: scroll;
+  }
   & .basket-main {
     text-align: center;
     padding: 40px;

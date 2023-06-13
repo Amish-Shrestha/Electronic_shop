@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromBasket } from "../../redux/action/action";
 import { useNavigate } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap";
+import {  Row, Col } from "react-bootstrap";
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import "./index.scss";
 
 const Basket = ({ usTors }) => {
@@ -36,6 +37,10 @@ const Basket = ({ usTors }) => {
 
   return (
     <div className="body-basket">
+      <div className="item-number">
+       <ShoppingBasketIcon/> <span>{basket.length}</span>
+      </div>
+      <div className="basket-items">
       {basket.map((item) => {
         return (
           <div className="basket-main">
@@ -77,6 +82,7 @@ const Basket = ({ usTors }) => {
           </div>
         );
       })}
+      </div>
       <hr />
       <div className="checkout-del">
         <Row className="align-items-center">
@@ -101,6 +107,7 @@ const Basket = ({ usTors }) => {
           </Col>
         </Row>
       </div>
+      <hr/>
     </div>
   );
 };
